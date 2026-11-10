@@ -2,7 +2,8 @@ import { use } from 'react';
 import type { Api } from './types';
 
 const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+// Aceita o nome usado na Vercel/Supabase (ANON_KEY) e o usado pelo Lovable Cloud (PUBLISHABLE_KEY).
+const key = (import.meta.env.VITE_SUPABASE_ANON_KEY ?? import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY) as string | undefined;
 
 export const isSupabaseConfigured = Boolean(url && key && !url.includes('SEU-PROJETO'));
 
