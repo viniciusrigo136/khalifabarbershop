@@ -16,7 +16,7 @@ npm run build    # gera dist/
 
 Tudo fica em [`src/config.ts`](src/config.ts):
 
-- `whatsapp`: número com DDI + DDD, só números (ex.: `5549999998888`). **Preencha antes de publicar**; vazio, os botões abrem o WhatsApp sem contato definido.
+- `whatsapp`: número com DDI + DDD, só números (hoje: `5549988902258`).
 - `instagram`: usuário sem `@` (confira se é `chiodibarber`).
 - `SERVICES`: nome, descrição, duração e, se quiser, `price: 'R$ 40'`. Sem preço, o site mostra a duração e avisa que o valor é passado no WhatsApp.
 

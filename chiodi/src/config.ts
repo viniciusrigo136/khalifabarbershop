@@ -9,7 +9,7 @@ export const SHOP = {
    * WhatsApp com DDI + DDD, só números. Ex.: '5549999998888'.
    * Enquanto estiver vazio, os botões abrem o WhatsApp para a pessoa escolher o contato.
    */
-  whatsapp: '',
+  whatsapp: '5549988902258',
   /** Usuário do Instagram, sem @. Deixe '' para esconder. */
   instagram: 'chiodibarber',
   address: {
