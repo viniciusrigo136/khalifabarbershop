@@ -4,7 +4,8 @@
   --mist: #efeef2;
   --concrete: #9a9897;
   --steel: #5d5c63;
-  --graphite: #2b2a30;
+  --graphite: #0a090c;
+  --black: #000000;
   --ink: #232227;
   --violet: #5a01aa;
   --violet-deep: #45008a;
@@ -214,7 +215,7 @@ a {
 }
 .header--solid {
   transform: none;
-  background: rgb(43 42 48 / 0.86);
+  background: rgb(0 0 0 / 0.82);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
@@ -257,7 +258,7 @@ a {
   gap: 12px;
   padding: 8px 8px 8px 18px;
   border-radius: 18px;
-  background: rgb(43 42 48 / 0.9);
+  background: rgb(10 9 12 / 0.9);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
   color: var(--white);
@@ -279,33 +280,33 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 var(--gutter) 40px;
-  background:
-    radial-gradient(120% 55% at 50% 0%, rgb(168 116 245 / 0.22), transparent 70%),
-    linear-gradient(180deg, #34333a 0%, var(--graphite) 55%);
+  padding: 72px var(--gutter) 36px;
+  background: var(--black);
   color: var(--white);
   overflow: hidden;
   perspective: 900px;
   isolation: isolate;
+  text-align: center;
 }
-/* a parede roxa, do lado esquerdo como na loja */
-.hero::before {
+/* chão roxo, como a luz da parede refletindo no piso */
+.hero::after {
   content: '';
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 14px;
-  background: var(--violet);
-  z-index: -1;
+  inset: auto 0 0;
+  height: 45%;
+  background: radial-gradient(80% 100% at 50% 100%, rgb(90 1 170 / 0.35), transparent 70%);
+  z-index: -2;
 }
 
 .hero__ceiling {
   position: absolute;
-  top: -4%;
+  top: -6%;
   left: 50%;
   width: min(150vw, 980px);
   margin-left: calc(min(150vw, 980px) / -2);
   transform-origin: 50% 0;
   z-index: -1;
+  opacity: 0.9;
   will-change: transform;
 }
 .hexlights__svg {
@@ -318,12 +319,12 @@ a {
   stroke-linecap: round;
 }
 .hexlights__glow path {
-  stroke: #d9c4ff;
-  stroke-width: 14;
+  stroke: #7d2cf0;
+  stroke-width: 16;
 }
 .hexlights__core path {
   stroke: #ffffff;
-  stroke-width: 4.5;
+  stroke-width: 4;
 }
 
 .hero__inner {
@@ -331,31 +332,53 @@ a {
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.hero__brand {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(62vw, 240px);
+  aspect-ratio: 1;
+}
+.hero__halo {
+  position: absolute;
+  inset: -22%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(125 44 240 / 0.75), rgb(90 1 170 / 0.35) 55%, transparent 100%);
+  z-index: -1;
+}
 .hero__logo {
-  width: 132px;
-  height: 132px;
-  margin-bottom: 8px;
-  filter: drop-shadow(0 14px 24px rgb(0 0 0 / 0.4));
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgb(0 0 0 / 0.7)) drop-shadow(0 0 2px rgb(255 255 255 / 0.4));
 }
 
+.hero__now {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+}
 .hero__clock {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(6.5rem, 38vw, 15rem);
-  line-height: 0.82;
-  letter-spacing: -0.01em;
+  font-size: clamp(3.6rem, 17vw, 6rem);
+  line-height: 0.85;
   font-variant-numeric: tabular-nums;
   color: var(--white);
   text-shadow:
-    0 0 18px rgb(255 255 255 / 0.45),
-    0 0 60px rgb(168 116 245 / 0.55);
+    0 0 14px rgb(255 255 255 / 0.4),
+    0 0 40px rgb(125 44 240 / 0.8);
 }
 .hero__colon {
   display: inline-block;
   animation: blink 2s steps(1, end) infinite;
-  margin: 0 0.02em;
+  margin: 0 0.03em;
   transform: translateY(-0.06em);
 }
 @keyframes blink {
@@ -367,18 +390,18 @@ a {
 .hero__status {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 14px;
+  gap: 10px;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  color: #dcdae2;
 }
 
 .hero__title {
   margin-top: 18px;
-  max-width: 15ch;
+  max-width: 18ch;
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(2.1rem, 9vw, 3.6rem);
+  font-size: clamp(1.9rem, 8.2vw, 3.4rem);
   line-height: 0.98;
   text-transform: uppercase;
   text-wrap: balance;
@@ -387,11 +410,26 @@ a {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
-  margin-top: 26px;
+  width: 100%;
+  margin-top: 24px;
+}
+.hero__actions {
+  flex-wrap: nowrap;
 }
 .hero__actions .btn {
-  flex: 1 1 200px;
+  --cut: 12px;
+  white-space: nowrap;
+  padding: 0 18px;
+  font-size: 0.95rem;
+  gap: 8px;
+}
+.hero__actions .btn--violet {
+  flex: 1 1 auto;
+}
+.hero__actions .btn--ghost {
+  flex: 0 1 auto;
 }
 
 /* ---------- Faixa do poste ---------- */
@@ -635,7 +673,7 @@ a {
   aspect-ratio: 3 / 4;
   border-radius: 999px 999px 18px 18px;
   overflow: hidden;
-  background: #3a3940;
+  background: #1c1b20;
   box-shadow: 0 0 0 8px rgb(255 255 255 / 0.06);
 }
 .barber__photo img {
@@ -784,31 +822,38 @@ a {
   }
   .hero {
     justify-content: center;
-    padding-top: 120px;
+    padding-top: 110px;
+    text-align: left;
   }
   .hero__inner {
     display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-    align-items: end;
-    column-gap: 80px;
-    padding-top: 160px;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 64px;
+    padding-top: 120px;
   }
-  .hero__logo {
+  .hero__brand {
     grid-column: 2;
     grid-row: 1 / span 3;
-    align-self: center;
-    width: 220px;
-    height: 220px;
+    width: 400px;
   }
-  .hero__clock,
-  .hero__status,
+  .hero__now,
   .hero__title,
   .hero__actions {
     grid-column: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .hero__now {
+    margin-top: 0;
+  }
+  .hero__clock {
+    font-size: 7.5rem;
   }
   .hero__actions .btn {
     flex: 0 0 auto;
+    padding: 0 28px;
+    font-size: 1rem;
   }
   .hero__ceiling {
     top: -4%;
@@ -816,7 +861,7 @@ a {
     margin-left: -410px;
   }
   .header:not(.header--solid) {
-    background: linear-gradient(rgb(43 42 48 / 0.75), transparent);
+    background: linear-gradient(rgb(0 0 0 / 0.8), transparent);
   }
   .home__grid {
     grid-template-columns: 90px 1fr;

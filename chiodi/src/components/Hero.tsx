@@ -33,37 +33,46 @@ export function Hero() {
       </m.div>
 
       <div className="hero__inner">
-        <m.img
-          className="hero__logo"
-          src="/img/logo-256.webp"
-          srcSet="/img/logo-256.webp 256w, /img/logo-512.webp 512w"
-          sizes="(min-width: 900px) 200px, 132px"
-          width={256}
-          height={256}
-          alt="The Chiodi Barber"
-          initial={reduce ? false : { opacity: 0, scale: 0.6, rotate: -14 }}
-          animate={{ opacity: 1, scale: 1, rotate: -4 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 16, delay: AFTER_LIGHTS }}
-        />
+        <div className="hero__brand">
+          <m.span
+            className="hero__halo"
+            aria-hidden="true"
+            initial={reduce ? false : { opacity: 0, scale: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: EASE, delay: AFTER_LIGHTS - 0.2 }}
+          />
+          <m.img
+            className="hero__logo"
+            src="/img/logo-512.webp"
+            srcSet="/img/logo-256.webp 256w, /img/logo-512.webp 512w"
+            sizes="(min-width: 900px) 380px, 240px"
+            width={512}
+            height={512}
+            alt="The Chiodi Barber"
+            fetchPriority="high"
+            initial={reduce ? false : { opacity: 0, scale: 0.4, rotate: -18, y: 30 }}
+            animate={{ opacity: 1, scale: 1, rotate: -3, y: 0 }}
+            transition={{ type: 'spring', stiffness: 220, damping: 14, delay: AFTER_LIGHTS }}
+          />
+        </div>
 
-        <m.p className="hero__clock" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={0}>
-          <time aria-label={`Agora são ${time.hh} e ${time.mm} em ${SHOP.address.city}`}>
+        <m.p className="hero__now" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={0}>
+          <time className="hero__clock" aria-label={`Agora são ${time.hh} e ${time.mm} em ${SHOP.address.city}`}>
             {time.hh}
             <span className="hero__colon">:</span>
             {time.mm}
           </time>
+          <span className="hero__status">
+            <span className="live-dot" aria-hidden="true" />
+            {greeting(time.hour)}
+          </span>
         </m.p>
 
-        <m.p className="hero__status" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={1}>
-          <span className="live-dot" aria-hidden="true" />
-          {greeting(time.hour)}
-        </m.p>
-
-        <m.h1 id="hero-title" className="hero__title" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={2}>
+        <m.h1 id="hero-title" className="hero__title" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={1}>
           Barbearia aberta 24 horas, e que vai até a sua casa.
         </m.h1>
 
-        <m.div className="hero__actions" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={3}>
+        <m.div className="hero__actions" initial={reduce ? false : 'hidden'} animate="show" variants={rise} custom={2}>
           <m.a
             className="btn btn--violet"
             href={whatsappLink(`Olá ${SHOP.barber}! Quero marcar um horário.`)}
@@ -74,7 +83,7 @@ export function Hero() {
             <WhatsIcon /> Marcar no WhatsApp
           </m.a>
           <a className="btn btn--ghost" href="#servicos">
-            Ver serviços
+            Serviços
           </a>
         </m.div>
       </div>
